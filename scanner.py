@@ -3,13 +3,13 @@ import re
 import requests
 import time
 
-# CHANGE THIS TO YOUR PATH
+# CHANGE THIS TO YOUR VRCHAT CACHE FOLDER
 target_folder = r'C:\Users\YOUR USER\AppData\LocalLow\VRChat\VRChat\Cache-WindowsPlayer'
 
-# Regular expression to search for the exact string "avtr_" followed by a UUID
+# Regular expression to find the exact string "avtr_" followed by a UUID
 pattern = re.compile(r'avtr_[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
 
-# CHANGE THIS TO THE EXIT PATH
+# CHANGE THIS TO SELECT WHERE THE FILE WILL GO
 output_file_path = 'C:\Logger\scan.txt'
 
 # Set to store unique strings
@@ -43,7 +43,7 @@ def send_results_to_discord(webhook_url, results):
 if os.path.exists(output_file_path):
     with open(output_file_path, 'r', encoding='utf-8') as existing_output_file:
         for line in existing_output_file:
-            unique_results add(line.strip())
+            unique_results.add(line.strip())
 
 # Function to search and save results in real-time to a file
 def search_and_save_results(folder):
@@ -66,7 +66,7 @@ def search_and_save_results(folder):
 # Continuous loop to search and send results in batches
 while True:
     print('Starting search and logging...')
-    search_and_save_results(target_folder)
+    search_and save_results(target_folder)
     print('Search and logging completed.')
 
     if unique_results:
