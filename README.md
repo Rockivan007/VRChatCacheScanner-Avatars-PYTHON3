@@ -7,6 +7,8 @@
 **Instructions:**
 
 ```python
+# Use in CMD "Pip install requests" and "pip install time"
+
 # Open the `scanner.py` script using a text editor of your choice.
 
 # Locate the line that defines the `discord_webhook_url` variable. It will look like this:
