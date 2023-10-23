@@ -3,19 +3,20 @@ import re
 import requests
 import time
 
-# Target folder
-target_folder = r'C:\Users\ivanp\AppData\LocalLow\VRChat\VRChat\Cache-WindowsPlayer'
+# Target folder relative to the script directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+target_folder = os.path.join(script_dir, 'Cache-WindowsPlayer')
 
 # Regular expression to find the exact string "avtr_" followed by a UUID
 pattern = re.compile(r'avtr_[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
 
-# Output file path
-output_file_path = 'D:\Logger\scan.txt'
+# Output file path relative to the script directory
+output_file_path = os.path.join(script_dir, 'scan.txt')
 
 # Set to store unique strings
 unique_results = set()
 
-# Discord webhook URL
+# Discord Webhook URL
 discord_webhook_url = 'https://discord.com/api/webhooks/your_webhook_here'
 
 # Function to send results to Discord in batches
@@ -28,14 +29,14 @@ def send_results_to_discord(webhook_url, results):
         results_list = results_list[batch_size:]
         message = "\n".join(batch)
 
-        # Create the message payload
+        # Create message payload
         payload = {'content': message}
 
         # Send the message to the webhook
         response = requests.post(webhook_url, json=payload)
 
         if response.status_code != 204:
-            print(f'Error sending the message: {response.status_code}')
+            print(f'Error sending message: {response.status_code}')
         else:
             print(f'Message sent to Discord: {message}')
 
@@ -65,9 +66,9 @@ def search_and_save_results(folder):
 
 # Continuous loop to search and send results in batches
 while True:
-    print('Starting search and recording...')
+    print('Starting search and logging...')
     search_and_save_results(target_folder)
-    print('Search and recording completed.')
+    print('Search and logging completed.')
 
     if unique_results:
         print('Sending results to Discord...')
