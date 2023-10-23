@@ -16,7 +16,7 @@ output_file_path = 'D:\Logger\scan.txt'
 unique_results = set()
 
 # Discord webhook URL
-discord_webhook_url = 'https://discord.com/api/webhooks/1166002122014347405/GE_k1vQ-7q6GgLs3feU_t7Xui46uSFaMrmLjirfwqtHVLYr_7YPrkr1bC1G9-Oq1LJvg'
+discord_webhook_url = 'https://discord.com/api/webhooks/your_webhook_here'
 
 # Function to send results to Discord in batches
 def send_results_to_discord(webhook_url, results):
